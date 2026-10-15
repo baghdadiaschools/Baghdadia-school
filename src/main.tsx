@@ -18,6 +18,7 @@ import {
   Send,
   WifiOff,
   Video,
+  Phone,
 } from "lucide-react";
 import "./i18n";
 import { categories } from "./categories";
@@ -446,6 +447,15 @@ function App() {
                 <img src="/assets/logo.png" alt={t("school")} />
                 <h2>{t("school")}</h2>
                 <p>{t("aboutText")}</p>
+                <div className="creator-credit">
+                  <span className="creator-label">{t("madeAndDesigned")}</span>
+                  <h3>{t("creatorName")}</h3>
+                  <p>{t("contactPrompt")}</p>
+                  <a className="creator-phone" href="tel:07721604061">
+                    <Phone size={18} aria-hidden="true" />
+                    <bdi dir="ltr">07721604061</bdi>
+                  </a>
+                </div>
               </section>
             </>
           ) : (

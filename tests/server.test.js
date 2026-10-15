@@ -27,3 +27,25 @@ test("health, empty categories, disabled AI and API errors", async () => {
     await new Promise((r) => server.close(r));
   }
 });
+
+test('production does not expose server secrets or private files', async () => {
+  const previous = process.env.SCHOOL_TEST_SECRET;
+  process.env.SCHOOL_TEST_SECRET = 'test-only-server-secret-canary';
+  const server = createApp({ production: true }).listen(0, '127.0.0.1');
+  await new Promise(resolve => server.once('listening', resolve));
+  try {
+    const base = `http://127.0.0.1:${server.address().port}`;
+    for (const route of ['/.env', '/.env.production', '/.git/config', '/server/app.js']) {
+      assert.equal((await fetch(base + route)).status, 404, route);
+    }
+    for (const route of ['/', '/about', '/api/health', '/api/categories']) {
+      const response = await fetch(base + route);
+      assert.equal(response.status, 200);
+      assert.ok(!(await response.text()).includes(process.env.SCHOOL_TEST_SECRET));
+    }
+  } finally {
+    if (previous === undefined) delete process.env.SCHOOL_TEST_SECRET;
+    else process.env.SCHOOL_TEST_SECRET = previous;
+    await new Promise(resolve => server.close(resolve));
+  }
+});

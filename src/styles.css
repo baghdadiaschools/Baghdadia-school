@@ -729,6 +729,31 @@ footer {
   margin: 20px auto;
   font-size: 14px;
 }
+.creator-credit {
+  max-width: 440px;
+  margin: 30px auto 0;
+  padding: 26px 18px 8px;
+  border-top: 1px solid var(--border);
+}
+.creator-label { color: var(--muted); font-size: 12px; }
+.creator-credit h3 { margin-top: 6px; font-size: 23px; color: var(--ink); }
+.about-panel .creator-credit p { margin: 12px 0; font-size: 12px; }
+.creator-phone {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 10px 22px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--bg);
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 17px;
+  transition: border-color .2s, transform .2s;
+}
+.creator-phone:hover { border-color: var(--accent); transform: translateY(-2px); }
 .splash {
   position: fixed;
   inset: 0;

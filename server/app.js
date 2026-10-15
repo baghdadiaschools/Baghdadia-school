@@ -15,6 +15,13 @@ export const categoryIds = [
 export function createApp({ production = false } = {}) {
   const app = express();
   app.disable("x-powered-by");
+  // Never let private dotfiles fall through to static serving or SPA routing.
+  app.use((req, res, next) => {
+    if (req.path.split("/").some((segment) => segment.startsWith("."))) {
+      return res.status(404).end();
+    }
+    next();
+  });
   app.use(
     helmet({
       contentSecurityPolicy: production

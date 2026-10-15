@@ -110,3 +110,18 @@ test("failed video and reduced motion never block access", async ({ page }) => {
   await page.reload();
   await expect(page.locator(".splash")).toHaveCount(0, { timeout: 2000 });
 });
+
+test("About credit is bilingual with a usable phone link on mobile", async ({ page }) => {
+  await page.addInitScript(() => sessionStorage.setItem("intro", "1"));
+  await page.setViewportSize({ width: 320, height: 740 });
+  await page.goto("/about");
+  await expect(page.locator(".creator-credit h3")).toHaveText("يوسف مصطفى فائق");
+  await expect(page.locator(".creator-phone")).toHaveAttribute("href", "tel:07721604061");
+  await expect(page.locator(".creator-phone bdi")).toHaveText("07721604061");
+  await page.locator(".language").click();
+  await expect(page.locator(".creator-credit")).toContainText("Made and designed by");
+  await expect(page.locator(".creator-credit h3")).toHaveText("Yousif Mustafa Faek");
+  await page.locator(".icon-button").click();
+  await expect(page.locator(".creator-phone")).toBeVisible();
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+});

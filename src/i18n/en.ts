@@ -29,6 +29,9 @@ export default {
   install: "Install the app",
   installText:
     "On iPhone or iPad, open in Safari, tap Share, then Add to Home Screen. On Android or desktop, use your browser’s Install app option. Installation requires HTTPS (or localhost).",
+  madeAndDesigned: "Made and designed by",
+  creatorName: "Yousif Mustafa Faek",
+  contactPrompt: "For contact info, please call",
   aboutText:
     "Your bilingual school companion. These eight spaces are ready for future school content. AI, messaging and live classes are not active yet. No account is required.",
   chat: "AI conversations will be available in a future update.",
