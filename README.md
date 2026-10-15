@@ -108,3 +108,7 @@ No fictional assignments, classes, teachers, exams, notices, schedules, or chat 
 ### Container validation note
 
 The cloud environment validated Compose syntax but could not complete the Docker build because container DNS resolution to the npm registry failed (`EAI_AGAIN`). The Node production build and Chromium tests passed. Run `docker compose up -d --build` and verify its health check on your target host before deploying.
+
+## Free cloud hosting (PC can be off)
+
+See [the Render deployment guide](docs/RENDER.md). The included `render.yaml` configures a Free Node web service serving both the app and API. Connect your GitHub repository and choose branch `feat/baghdadia-school-app`. Hosting requires your own Render account; free-tier availability and limits are controlled by Render.
