@@ -1,0 +1,12 @@
+services:
+  school:
+    build: .
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      PORT: 3001
+    ports:
+      - "127.0.0.1:3001:3001"
+    init: true
+    security_opt:
+      - no-new-privileges:true
